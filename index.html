@@ -390,3 +390,176 @@
   .t-tag { display: inline-block; margin-top: 0.7rem; background: var(--gold-pale); color: var(--olive-dark); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.2rem 0.7rem; border-radius: 50px; }
 
   /* ── HOW IT WORKS ── */
+   <p class="section-label reveal">The Glow Guide</p>
+  <h2 class="section-title reveal reveal-delay-1">Your 4-Step Ritual</h2>
+  <p class="section-sub reveal reveal-delay-2">A simple, intentional routine for skin that remembers what it's capable of.</p>
+  <div class="steps-grid">
+    <div class="step-card reveal reveal-delay-1">
+      <span class="step-num">01</span>
+      <div class="step-icon-wrap">🧼</div>
+      <div class="step-h">Cleanse Gently</div>
+      <p class="step-p">Start with a gentle botanical cleanser to prepare your canvas. No stripping — just clarity.</p>
+      <div class="step-connector"></div>
+    </div>
+    <div class="step-card reveal reveal-delay-2">
+      <span class="step-num">02</span>
+      <div class="step-icon-wrap">💧</div>
+      <div class="step-h">Tone & Balance</div>
+      <p class="step-p">Apply our rosewater toner to restore your skin's pH and open pores to receive the oil.</p>
+      <div class="step-connector"></div>
+    </div>
+    <div class="step-card reveal reveal-delay-3">
+      <span class="step-num">03</span>
+      <div class="step-icon-wrap">✨</div>
+      <div class="step-h">Apply Glow Oil</div>
+      <p class="step-p">Press 3–4 drops of your Aura Organics oil into warm palms. Press gently onto face and neck.</p>
+      <div class="step-connector"></div>
+    </div>
+    <div class="step-card reveal reveal-delay-4">
+      <span class="step-num">04</span>
+      <div class="step-icon-wrap">🌙</div>
+      <div class="step-h">Seal & Glow</div>
+      <p class="step-p">Allow 60 seconds to absorb. Morning: you're ready to glow. Night: let the magic work while you sleep.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── NEWSLETTER ── -->
+<section id="newsletter">
+  <h2 class="reveal">Join the Glow Circle</h2>
+  <p class="reveal reveal-delay-1">Get exclusive skincare tips, early access to drops, and 10% off your first order.</p>
+  <div class="newsletter-form reveal reveal-delay-2">
+    <input type="email" placeholder="Enter your email address" aria-label="Email address"/>
+    <button>Get 10% Off →</button>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">Aura <span>Organics</span></div>
+      <p class="footer-about">A premium organic glow oil brand — crafted with love, rooted in nature, and proven by results. Your skin deserves nothing less than the purest.</p>
+      <div class="footer-socials">
+        <a class="social-icon" href="#" aria-label="Instagram">📸</a>
+        <a class="social-icon" href="#" aria-label="Facebook">📘</a>
+        <a class="social-icon" href="#" aria-label="TikTok">🎵</a>
+        <a class="social-icon" href="#" aria-label="Pinterest">📌</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="#">Glow Oils</a></li>
+        <li><a href="#">Serums</a></li>
+        <li><a href="#">Bundles & Kits</a></li>
+        <li><a href="#">New Arrivals</a></li>
+        <li><a href="#">Bestsellers</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">Our Story</a></li>
+        <li><a href="#">Ingredients</a></li>
+        <li><a href="#">Sustainability</a></li>
+        <li><a href="#">Press</a></li>
+        <li><a href="#">Wholesale</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <ul>
+        <li><a href="#">Track My Order</a></li>
+        <li><a href="#">Returns & Refunds</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Contact Us</a></li>
+        
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Aura Organics. All rights reserved. Made with ❤ in Nigeria.</p>
+    <div class="footer-badges">
+      <span class="footer-badge-pill">Cruelty-Free</span>
+      <span class="footer-badge-pill">Chemical-Free</span>
+      <span class="footer-badge-pill">100% Organic</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── NAVBAR SCROLL ──
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', function() {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // ── MOBILE MENU ──
+  var hamburger = document.getElementById('hamburger');
+  var mobileMenu = document.getElementById('mobileMenu');
+  var mobileClose = document.getElementById('mobileClose');
+
+  function openMobile() {
+    hamburger.classList.add('open');
+    mobileMenu.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMobile() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  if (hamburger) hamburger.addEventListener('click', openMobile);
+  if (mobileClose) mobileClose.addEventListener('click', closeMobile);
+
+  // Close on ESC key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeMobile();
+  });
+
+  // ── SCROLL REVEAL ──
+  var revealEls = document.querySelectorAll('.reveal');
+  var revObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+  revealEls.forEach(function(el) { revObserver.observe(el); });
+
+  // ── BEFORE/AFTER SLIDER ──
+  var wrap   = document.getElementById('sliderWrap');
+  var afterImg = document.getElementById('sliderAfter');
+  var handle   = document.getElementById('sliderHandle');
+  var isDragging = false;
+
+  function setSlider(x) {
+    if (!wrap) return;
+    var rect = wrap.getBoundingClientRect();
+    var pct  = Math.min(Math.max((x - rect.left) / rect.width, 0.02), 0.98);
+    afterImg.style.clipPath = 'inset(0 ' + ((1 - pct) * 100) + '% 0 0)';
+    handle.style.left = (pct * 100) + '%';
+  }
+
+  if (wrap && handle) {
+    handle.addEventListener('mousedown',  function() { isDragging = true; });
+    wrap.addEventListener('touchstart',   function() { isDragging = true; }, { passive: true });
+    window.addEventListener('mouseup',    function() { isDragging = false; });
+    window.addEventListener('touchend',   function() { isDragging = false; });
+    window.addEventListener('mousemove',  function(e) { if (isDragging) setSlider(e.clientX); });
+    window.addEventListener('touchmove',  function(e) { if (isDragging) setSlider(e.touches[0].clientX); }, { passive: true });
+    wrap.addEventListener('click',        function(e) { setSlider(e.clientX); });
+  }
+
+  // ── WISHLIST TOGGLE ──
+  document.querySelectorAll('.product-wish').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btn.textContent = btn.textContent === '♡' ? '♥' : '♡';
+      btn.style.color = btn.textContent === '♥' ? 'var(--terra)' : '';
+    });
+  });
+</script>
+
+</body>
+</html>
