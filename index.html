@@ -387,13 +387,615 @@
   .t-meta { font-size: 0.75rem; color: var(--muted); }
   .t-stars { color: var(--gold); font-size: 0.8rem; }
   .t-text { font-size: 0.88rem; color: var(--ink-soft); line-height: 1.65; font-weight: 300; }
-  .t-tag { display: inline-block; margin-top: 0.7rem; background: var(--gold-pale); color: var(--olive-dark); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.2rem 0.7rem; border-radius: 50px; }
+  .t-tag { display: inline-block; margin-top: 0.7rem; background: var(--gold-pale); color: var(--olive-dark); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.25rem 0.65rem; border-radius: 50px; }
 
   /* ── HOW IT WORKS ── */
-  <section id="how">
-   <p class="section-label reveal">The Glow Guide</p>
+  #how { padding: 7rem 5%; }
+  .steps-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-top: 3.5rem;
+  }
+  .step-card {
+    background: #fff; border-radius: 20px; padding: 2rem;
+    box-shadow: 0 2px 16px var(--shadow);
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+  }
+  .step-card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px var(--shadow-md); }
+  .step-num {
+    font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700;
+    color: var(--gold); opacity: 0.4; line-height: 1;
+  }
+  .step-icon-wrap {
+    font-size: 2.2rem; margin: 1rem 0;
+  }
+  .step-h {
+    font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 600;
+    color: var(--ink); margin-bottom: 0.6rem;
+  }
+  .step-p {
+    font-size: 0.9rem; color: var(--muted); line-height: 1.6; font-weight: 300;
+  }
+  .step-connector {
+    position: absolute; bottom: -1rem; right: 1rem; width: 0; height: 0;
+    border-left: 20px solid transparent; border-right: 0 solid transparent;
+    border-top: 20px solid var(--gold); opacity: 0.15;
+    display: none;
+  }
+  .step-card:last-child .step-connector { display: none; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .reveal { opacity: 0; transform: translateY(20px); }
+  .reveal.visible { animation: fadeSlideUp 0.8s ease forwards; }
+  .reveal-delay-1 { animation-delay: 0.2s; }
+  .reveal-delay-2 { animation-delay: 0.4s; }
+  .reveal-delay-3 { animation-delay: 0.6s; }
+  .reveal-delay-4 { animation-delay: 0.8s; }
+
+  /* ── NEWSLETTER ── */
+  #newsletter {
+    padding: 6rem 5%;
+    background: var(--ink);
+    color: #fff;
+    text-align: center;
+  }
+  #newsletter h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+  #newsletter p {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.8);
+    max-width: 500px;
+    margin: 0 auto 2.5rem;
+    font-weight: 300;
+  }
+  .newsletter-form {
+    display: flex;
+    gap: 0.8rem;
+    max-width: 480px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .newsletter-form input {
+    flex: 1; min-width: 200px;
+    padding: 0.85rem 1.2rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    transition: background 0.3s;
+  }
+  .newsletter-form input::placeholder {
+    color: rgba(255,255,255,0.6);
+  }
+  .newsletter-form input:focus {
+    outline: none;
+    background: rgba(255,255,255,0.2);
+  }
+  .newsletter-form button {
+    background: var(--gold);
+    color: var(--ink);
+    border: none;
+    padding: 0.85rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+  }
+  .newsletter-form button:hover {
+    background: var(--gold-light);
+    transform: scale(1.02);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: #fff;
+    padding: 4rem 5% 2rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+  .footer-logo span {
+    color: var(--gold);
+  }
+  .footer-about {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+  .footer-socials {
+    display: flex;
+    gap: 1rem;
+  }
+  .social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: background 0.3s, transform 0.2s;
+  }
+  .social-icon:hover {
+    background: var(--gold);
+    transform: translateY(-3px);
+  }
+  .footer-col h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    color: #fff;
+  }
+  .footer-col ul {
+    list-style: none;
+  }
+  .footer-col li {
+    margin-bottom: 0.8rem;
+  }
+  .footer-col a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 300;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover {
+    color: var(--gold);
+  }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-bottom p {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.6);
+    font-weight: 300;
+  }
+  .footer-badges {
+    display: flex;
+    gap: 0.8rem;
+  }
+  .footer-badge-pill {
+    background: rgba(201,169,110,0.2);
+    color: var(--gold);
+    padding: 0.4rem 0.9rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  /* ── MOBILE MENU ── */
+  #mobileMenu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--ink);
+    z-index: 99;
+    padding: 6rem 5% 2rem;
+    overflow-y: auto;
+  }
+  #mobileMenu.open {
+    display: block;
+  }
+  #mobileMenu a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  #mobileClose {
+    position: absolute;
+    top: 1.5rem;
+    right: 5%;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    #hero { grid-template-columns: 1fr; padding-top: 6rem; }
+    .hero-right { min-height: 400px; }
+    .product-grid { grid-template-columns: repeat(2, 1fr); }
+    .badges-grid { grid-template-columns: repeat(2, 1fr); }
+    .steps-grid { grid-template-columns: repeat(2, 1fr); }
+    .transformation-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .bento-grid { grid-template-columns: repeat(6, 1fr); }
+    .bento-a { grid-column: span 6; grid-row: span 1; min-height: 200px; }
+    .bento-b { grid-column: span 6; }
+    .bento-c { grid-column: span 3; }
+    .bento-d { grid-column: span 3; }
+    .bento-e { grid-column: span 6; }
+    .bento-f { grid-column: span 6; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    nav.scrolled .hamburger span { background: #fff; }
+  }
+
+  @media (max-width: 480px) {
+    .product-grid { grid-template-columns: 1fr; }
+    .badges-grid { grid-template-columns: 1fr; }
+    .steps-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .hero-h1 { font-size: 2.2rem; }
+    .section-title { font-size: 1.8rem; }
+    #hero { padding-top: 5rem; gap: 2rem; }
+    .hero-stats { flex-direction: column; gap: 1.5rem; }
+    .hero-actions { flex-direction: column; }
+    .btn-primary, .btn-secondary { width: 100%; }
+    .footer-bottom { flex-direction: column; }
+    .newsletter-form { flex-direction: column; }
+    .newsletter-form input, .newsletter-form button { width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav id="navbar">
+  <div class="nav-logo">Aura <span>Organics</span></div>
+  <ul class="nav-links">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#products">Shop</a></li>
+    <li><a href="#features">About</a></li>
+    <li><a href="#transformation">Results</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="cart-btn" aria-label="Shopping cart">
+      🛍️
+      <span class="cart-badge">2</span>
+    </button>
+    <button class="nav-cta">Order Now</button>
+    <button id="hamburger" class="hamburger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ── MOBILE MENU ── -->
+<div id="mobileMenu">
+  <button id="mobileClose" aria-label="Close menu">✕</button>
+  <a href="#hero">Home</a>
+  <a href="#products">Shop</a>
+  <a href="#features">About</a>
+  <a href="#transformation">Results</a>
+  <a href="#newsletter">Newsletter</a>
+</div>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <div class="hero-bg-blob"></div>
+  <div class="hero-blob2"></div>
+  
+  <div class="hero-left">
+    <div class="hero-tag">✨ Premium Organic Skincare</div>
+    <h1 class="hero-h1">Radiant Skin Starts <em>Within</em> <span class="gold">The Oil</span></h1>
+    <p class="hero-sub">Luxe glow oils crafted from 100% organic botanicals. Experience the transformation in 14 days or your money back.</p>
+    
+    <div class="hero-actions">
+      <button class="btn-primary">Shop Now</button>
+      <button class="btn-secondary">See Results</button>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">50K+</div>
+        <div class="stat-label">Happy Glow-Ups</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">4.9★</div>
+        <div class="stat-label">Customer Rated</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Organic & Pure</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="product-showcase">
+      <div style="aspect-ratio: 3/4; background: linear-gradient(135deg, #F0E4C8 0%, #E8DFC8 100%); border-radius: 28% 72% 68% 32% / 42% 38% 62% 58%; display: flex; align-items: center; justify-content: center; color: #8A8275; font-size: 3rem;">🧴</div>
+      <div class="badge badge-1">⭐ Bestseller</div>
+      <div class="badge badge-2">🌿 100% Natural</div>
+      <div class="badge badge-3">✓ Lab Tested</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TRUST STRIP ── -->
+<section id="trust">
+  <div class="trust-track">
+    <div class="trust-item">✓ Cruelty-Free <span class="trust-dot"></span></div>
+    <div class="trust-item">✓ Chemical-Free <span class="trust-dot"></span></div>
+    <div class="trust-item">✓ Vegan <span class="trust-dot"></span></div>
+    <div class="trust-item">✓ Dermatologist Tested <span class="trust-dot"></span></div>
+    <div class="trust-item">✓ Cruelty-Free <span class="trust-dot"></span></div>
+    <div class="trust-item">✓ Chemical-Free <span class="trust-dot"></span></div>
+    <div class="trust-item">✓ Vegan <span class="trust-dot"></span></div>
+    <div class="trust-item">✓ Dermatologist Tested <span class="trust-dot"></span></div>
+  </div>
+</section>
+
+<!-- ── TRUST BADGES ── -->
+<section id="trust-badges">
+  <p class="section-label">Why Choose Us</p>
+  <h2 class="section-title">Certified Goodness</h2>
+  <p class="section-sub">Every drop is a promise of purity and efficacy.</p>
+  
+  <div class="badges-grid">
+    <div class="badge-card">
+      <div class="badge-icon-wrap">🌿</div>
+      <h3>100% Organic</h3>
+      <p>Sourced from certified organic farms with zero synthetic additives.</p>
+    </div>
+    <div class="badge-card">
+      <div class="badge-icon-wrap">���</div>
+      <h3>Lab Tested</h3>
+      <p>Rigorously tested for purity, potency, and safety.</p>
+    </div>
+    <div class="badge-card">
+      <div class="badge-icon-wrap">💚</div>
+      <h3>Cruelty-Free</h3>
+      <p>Never tested on animals. Certified by leading ethical bodies.</p>
+    </div>
+    <div class="badge-card">
+      <div class="badge-icon-wrap">♻️</div>
+      <h3>Eco-Conscious</h3>
+      <p>Sustainable packaging and carbon-neutral shipping.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRODUCTS ── -->
+<section id="products">
+  <div class="products-header">
+    <div class="products-header-left">
+      <p class="section-label">Featured Collection</p>
+      <h2 class="section-title">Our Signature Glow Oils</h2>
+    </div>
+    <a href="#" class="see-all">See all products →</a>
+  </div>
+
+  <div class="product-grid">
+    <div class="product-card">
+      <div class="product-img-wrap">
+        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #C9A96E 0%, #E2C98A 100%); display: flex; align-items: center; justify-content: center; font-size: 3rem;">✨</div>
+        <div class="product-overlay">
+          <button class="product-quick-btn">Quick View</button>
+        </div>
+      </div>
+      <div class="product-badge-pill">New</div>
+      <button class="product-wish">♡</button>
+      <div class="product-body">
+        <p class="product-category">Glow Oil</p>
+        <h3 class="product-name">Golden Hour Oil</h3>
+        <div class="product-stars">
+          <span class="stars">★★★★★</span>
+          <span class="review-count">(128 reviews)</span>
+        </div>
+        <div class="product-footer">
+          <div>
+            <span class="product-price">$48</span>
+            <span class="product-price-old">$64</span>
+          </div>
+          <button class="add-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img-wrap">
+        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #C06B4A 0%, #D4866A 100%); display: flex; align-items: center; justify-content: center; font-size: 3rem;">🌹</div>
+        <div class="product-overlay">
+          <button class="product-quick-btn">Quick View</button>
+        </div>
+      </div>
+      <button class="product-wish">♡</button>
+      <div class="product-body">
+        <p class="product-category">Serum Oil</p>
+        <h3 class="product-name">Rose Radiance Serum</h3>
+        <div class="product-stars">
+          <span class="stars">★★★★★</span>
+          <span class="review-count">(94 reviews)</span>
+        </div>
+        <div class="product-footer">
+          <div>
+            <span class="product-price">$52</span>
+          </div>
+          <button class="add-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img-wrap">
+        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #6B7A4E 0%, #8A9A64 100%); display: flex; align-items: center; justify-content: center; font-size: 3rem;">🌿</div>
+        <div class="product-overlay">
+          <button class="product-quick-btn">Quick View</button>
+        </div>
+      </div>
+      <button class="product-wish">♡</button>
+      <div class="product-body">
+        <p class="product-category">Glow Oil</p>
+        <h3 class="product-name">Botanical Blend</h3>
+        <div class="product-stars">
+          <span class="stars">★★★★☆</span>
+          <span class="review-count">(67 reviews)</span>
+        </div>
+        <div class="product-footer">
+          <div>
+            <span class="product-price">$45</span>
+          </div>
+          <button class="add-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BENTO FEATURES ── -->
+<section id="features">
+  <p class="section-label">Why It Works</p>
+  <h2 class="section-title">The Science Behind the Glow</h2>
+  
+  <div class="bento-grid">
+    <div class="bento-cell bento-a">
+      <div>
+        <div class="bento-icon">🧬</div>
+        <h3 class="bento-title">Advanced Formula</h3>
+        <p class="bento-desc">Bioengineered with peptides and antioxidants to penetrate deep into the dermal layer, promoting collagen production and elasticity.</p>
+      </div>
+    </div>
+
+    <div class="bento-cell bento-b">
+      <div class="bento-num">01</div>
+      <h3 class="bento-title">Lightweight Yet Nourishing</h3>
+      <p class="bento-desc">Absorbs in seconds, leaving zero residue. The perfect lightweight luxury.</p>
+    </div>
+
+    <div class="bento-cell bento-c">
+      <div class="bento-icon">✨</div>
+      <h3 class="bento-title">Instant Radiance</h3>
+      <p class="bento-desc">Visible glow within 3 applications.</p>
+    </div>
+
+    <div class="bento-cell bento-d">
+      <div class="bento-icon">⚡</div>
+      <h3 class="bento-title">Fast-Acting</h3>
+      <p class="bento-desc">Results in 14 days.</p>
+    </div>
+
+    <div class="bento-cell bento-e">
+      <div class="bento-num">02</div>
+      <h3 class="bento-title">All Skin Types</h3>
+      <p class="bento-desc">From sensitive to oily — our universal formula works for everyone.</p>
+    </div>
+
+    <div class="bento-cell bento-f">
+      <div style="width: 100%; height: 100%; background: #333; display: flex; align-items: center; justify-content: center; font-size: 4rem; color: #666;">📦</div>
+      <div class="bento-img-overlay">
+        <h3 class="bento-title">Luxury Unboxing</h3>
+        <p class="bento-desc">Every package is a moment of self-care. Beautifully wrapped in sustainable, recyclable materials.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BEFORE/AFTER & TESTIMONIALS ── -->
+<section id="transformation">
+  <div class="transformation-inner">
+    <div class="transform-left">
+      <div class="transform-slider-wrap" id="sliderWrap">
+        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #C06B4A 0%, #E2C98A 100%); display: flex; align-items: center; justify-content: center; font-size: 3rem; color: rgba(0,0,0,0.1);">Before</div>
+        <div class="slider-after" id="sliderAfter">
+          <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #6B7A4E 0%, #C9A96E 100%); display: flex; align-items: center; justify-content: center; font-size: 3rem; color: rgba(0,0,0,0.1);">After</div>
+        </div>
+        <div class="slider-handle" id="sliderHandle">
+          <div class="slider-handle-btn">↔</div>
+        </div>
+        <div class="slider-labels">
+          <span class="slider-label">Before</span>
+          <span class="slider-label">After</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="transform-right">
+      <p class="section-label reveal">Real Results</p>
+      <h2 class="section-title reveal reveal-delay-1">See the Transformation</h2>
+      <p class="section-sub reveal reveal-delay-2">Hundreds of glowing skin testimonies from our community.</p>
+      
+      <div class="testimonial-cards">
+        <div class="t-card reveal reveal-delay-1">
+          <div class="t-card-top">
+            <div style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, #C9A96E 0%, #E2C98A 100%);"></div>
+            <div>
+              <p class="t-name">Amara K.</p>
+              <p class="t-meta">Lagos, Nigeria</p>
+            </div>
+          </div>
+          <div class="t-stars">★★★★★</div>
+          <p class="t-text">"My skin has never looked better. The Golden Hour Oil is a game-changer. I'm getting compliments everywhere!"</p>
+          <span class="t-tag">Verified Purchase</span>
+        </div>
+
+        <div class="t-card reveal reveal-delay-2">
+          <div class="t-card-top">
+            <div style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, #D4866A 0%, #C06B4A 100%);"></div>
+            <div>
+              <p class="t-name">Chioma T.</p>
+              <p class="t-meta">Abuja, Nigeria</p>
+            </div>
+          </div>
+          <div class="t-stars">★★★★★</div>
+          <p class="t-text">"Worth every naira. My hyperpigmentation is fading and my skin tone is so even now!"</p>
+          <span class="t-tag">Verified Purchase</span>
+        </div>
+
+        <div class="t-card reveal reveal-delay-3">
+          <div class="t-card-top">
+            <div style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, #8A9A64 0%, #6B7A4E 100%);"></div>
+            <div>
+              <p class="t-name">Zainab A.</p>
+              <p class="t-meta">Kano, Nigeria</p>
+            </div>
+          </div>
+          <div class="t-stars">★★★★★</div>
+          <p class="t-text">"I was skeptical, but this truly works. My skin feels softer and looks radiant. A must-have!"</p>
+          <span class="t-tag">Verified Purchase</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── HOW IT WORKS ── -->
+<section id="how">
+  <p class="section-label reveal">The Glow Guide</p>
   <h2 class="section-title reveal reveal-delay-1">Your 4-Step Ritual</h2>
   <p class="section-sub reveal reveal-delay-2">A simple, intentional routine for skin that remembers what it's capable of.</p>
+  
   <div class="steps-grid">
     <div class="step-card reveal reveal-delay-1">
       <span class="step-num">01</span>
@@ -402,6 +1004,7 @@
       <p class="step-p">Start with a gentle botanical cleanser to prepare your canvas. No stripping — just clarity.</p>
       <div class="step-connector"></div>
     </div>
+    
     <div class="step-card reveal reveal-delay-2">
       <span class="step-num">02</span>
       <div class="step-icon-wrap">💧</div>
@@ -409,6 +1012,7 @@
       <p class="step-p">Apply our rosewater toner to restore your skin's pH and open pores to receive the oil.</p>
       <div class="step-connector"></div>
     </div>
+    
     <div class="step-card reveal reveal-delay-3">
       <span class="step-num">03</span>
       <div class="step-icon-wrap">✨</div>
@@ -416,6 +1020,7 @@
       <p class="step-p">Press 3–4 drops of your Aura Organics oil into warm palms. Press gently onto face and neck.</p>
       <div class="step-connector"></div>
     </div>
+    
     <div class="step-card reveal reveal-delay-4">
       <span class="step-num">04</span>
       <div class="step-icon-wrap">🌙</div>
@@ -475,7 +1080,6 @@
         <li><a href="#">Returns & Refunds</a></li>
         <li><a href="#">FAQ</a></li>
         <li><a href="#">Contact Us</a></li>
-        
       </ul>
     </div>
   </div>
